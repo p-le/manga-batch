@@ -1,13 +1,15 @@
-package phu.quang.le
+package phu.quang.le.utils
 
 import scala.collection.mutable.Map
 import akka.actor.ActorContext
 
-private object ConfigurationStore {
+object ConfigurationStore {
   val entries = Map[String, AnyRef]()
   
   def put(key: String, value: AnyRef) {
     entries += ((key, value))
+    print(key)
+    print(value)
   }
   
   def get[A] = entries.values.find(_.isInstanceOf[A]).asInstanceOf[Option[A]]
