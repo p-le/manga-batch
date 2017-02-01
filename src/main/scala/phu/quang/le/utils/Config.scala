@@ -8,8 +8,6 @@ object ConfigurationStore {
   
   def put(key: String, value: AnyRef) {
     entries += ((key, value))
-    print(key)
-    print(value)
   }
   
   def get[A] = entries.values.find(_.isInstanceOf[A]).asInstanceOf[Option[A]]

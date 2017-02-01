@@ -2,16 +2,23 @@ package phu.quang.le.utils
 
 import com.typesafe.config.ConfigFactory
 import scala.collection.JavaConverters._
-import reactivemongo.api.MongoDriver
+import reactivemongo.api.{ MongoDriver, MongoConnection }
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 trait DBConfiguration extends Configuration {
   configure {
     val config = ConfigFactory.load()
-    val db = config.getString("mongodb.database")
-    val servers = config.getStringList("mongodb.servers").asScala
     val driver = new MongoDriver
-    val connection = driver.connection(servers)
-    connection(db)
+    val mongoUri = config.getString("mongoUri")
+    
+    val database = for {
+      uri <- Future.fromTry(MongoConnection.parseURI(mongoUri))
+      con = driver.connection(uri)
+      dn <- Future(uri.db.get)
+      db <- con.database(dn)
+    } yield db
+    
+    database
   }
 }
