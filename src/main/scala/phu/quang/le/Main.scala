@@ -11,6 +11,10 @@ import akka.http.scaladsl.model.ws._
 import phu.quang.le.actors.ChatRoom
 import phu.quang.le.actors.User
 import akka.http.scaladsl.model.headers.HttpCookie
+import scala.concurrent.Future
+import akka.http.scaladsl.Http.ServerBinding
+import akka.event.Logging
+import scala.util.{ Success, Failure }
 
 object Main extends App {
   
@@ -18,6 +22,7 @@ object Main extends App {
   implicit val context = system.dispatcher
   implicit val materializer = ActorMaterializer()
   
+  val logger = Logging.getLogger(system, this);
   val chatRoom = system.actorOf(ChatRoom.props("dashboard"))
   
   def wsHandler: Flow[Message, Message, NotUsed] = {
@@ -37,5 +42,11 @@ object Main extends App {
     }
   }
   
-  val bindingFuture = Http().bindAndHandle(routes, "0.0.0.0", 10000)
+  val (host, port) = ("0.0.0.0", 10000)
+  val bindingFuture: Future[ServerBinding] = Http().bindAndHandle(routes, host, port)
+  
+  bindingFuture.onComplete {
+    case Success(binding) => logger.info("Server binded successfully to {}:{}", host, port)
+    case Failure(ex) => logger.error(ex, "Failed to bind to {}:{}", host, port)
+  }
 }
