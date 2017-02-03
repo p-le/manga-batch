@@ -1,14 +1,66 @@
-### SBT template
-# Simple Build Tool
-# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
+/RUNNING_PID
+/logs/
+/project/*-shim.sbt
+/project/project/
+/project/target/
+/target/
 
-target/
-lib_managed/
-src_managed/
-project/boot/
-.history
-.cache
-### Scala template
+# Created by https://www.gitignore.io/api/scala,eclipse
+
+### Eclipse ###
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+### Scala ###
 *.class
 *.log
 
@@ -22,12 +74,13 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
-.idea
-.idea_modules
-projectFilesBackup*
 
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
 
-# Created by .ignore support plugin (hsz.mobi)
+# ENSIME specific
+.ensime_cache/
+.ensime
+
+# End of https://www.gitignore.io/api/scala,eclipse
