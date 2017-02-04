@@ -19,7 +19,6 @@ class ChatRoom(name: String) extends Actor {
   import ChatRoom._
   
   def receive: Actor.Receive = {
-    case Join(userName) =>
-      context.actorOf(User.props(userName))   
+    ???   
   }
 }

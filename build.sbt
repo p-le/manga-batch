@@ -45,11 +45,13 @@ libraryDependencies ++= Seq(
 	"com.typesafe.slick" 	%% 	"slick-testkit" 		%	"3.1.1",
 	"com.typesafe.slick" 	%% 	"slick-codegen" 		%	"3.1.1",
 	"org.scala-lang" 		% 	"scala-reflect" 		% 	"2.11.8",
-	"com.digital-achiever" 	%% 	"brando" 				% 	"3.0.3",
+	"com.github.etaty" 		%% 	"rediscala" 			% 	"1.8.0",
 	"mysql" 				%	"mysql-connector-java" 	% 	"5.1.40",
  	"ch.qos.logback" 		%	"logback-classic" 		% 	"1.1.9",
  	"org.scalatest"       	%%	"scalatest"             % 	"3.0.1"               	% "test"
 )
 
+
+fork in run := true
 
 fork in run := true
